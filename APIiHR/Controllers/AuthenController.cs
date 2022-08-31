@@ -23,7 +23,15 @@ namespace APIiHR.Controllers
         [HttpGet]
         public ObjectResult Get()
         {
+            Authenpass objAuthen = new Authenpass();
             return Ok(_IAuthenManager.GetAuthen());
+        }
+
+        [Route("{id}")]
+        [HttpGet]
+        public ObjectResult Get(string id)
+        {
+            return Ok(_IAuthenManager.GetAuthenByCode(id));
         }
 
         [Route("{id}")]

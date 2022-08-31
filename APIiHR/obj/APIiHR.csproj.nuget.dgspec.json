@@ -269,6 +269,10 @@
               "target": "Package",
               "version": "[5.0.0, )"
             },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.19.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
@@ -280,6 +284,10 @@
             "System.Runtime.Serialization.Json": {
               "target": "Package",
               "version": "[4.3.0, )"
+            },
+            "jose-jwt": {
+              "target": "Package",
+              "version": "[2.6.1, )"
             }
           },
           "imports": [

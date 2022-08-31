@@ -14,7 +14,7 @@ namespace APIiHR.DataAccess.Repositories.Implementations
     {
         private tbMTWebUserContext _tbMTWebUserContext;
         private tbMTEmpMainContext _tbMTEmpMainContext;
-        public AuthenRespository(tbMTWebUserContext tbMTWebUserContext, tbMTEmpMainContext tbMTEmpMainContext)
+        public AuthenRespository(tbMTWebUserContext tbMTWebUserContext, tbMTEmpMainContext  tbMTEmpMainContext)
         {
             _tbMTWebUserContext = tbMTWebUserContext;
             _tbMTEmpMainContext = tbMTEmpMainContext;
@@ -39,9 +39,37 @@ namespace APIiHR.DataAccess.Repositories.Implementations
         }
 
         public List<Authen> GetAuthen()
+
         {
-            List<Authen> innerJoinQuery = new List<Authen>();
-            return innerJoinQuery;
+            var User = (from U in _tbMTWebUserContext.tbMTWebUser 
+                        where U.UserName == "10026" && U.CompID =="1000" 
+                        select new {
+                            CompID = U.CompID, 
+                            UserName = U.UserName, 
+                            UserType = U.UserType, 
+                            Pwd=U.Pwd 
+                        }).ToList();
+            var Emp = (from M in _tbMTEmpMainContext.tbMTEmpMain 
+                       where M.EmpID == "10026" && M.CompID =="1000" 
+                       select new {
+                           EmpID=M.EmpID, 
+                           NameT = M.EmpFNameT+" "+M.EmpLNameT, 
+                           NameE = M.EmpFName+" "+M.EmpLName 
+                       }).ToList();
+            List<Authen> Result = User.Join(Emp, x => x.UserName, y => y.EmpID,
+                      (x, y) => new Authen
+                      {
+                          CompID = x.CompID,
+                          EmpID = y.EmpID,
+                          Pwd = x.Pwd,
+                          UserName = x.UserName,
+                          UserType = x.UserType,
+                          NameT = y.NameT,
+                          NameE = y.NameE,
+                      }).ToList();
+
+
+            return Result;
         }
         public List<Authen> GetAuthenByCode(string code)
         {

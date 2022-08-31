@@ -196,3 +196,5 @@ D:\APIiHR\APIiHR\obj\Release\net5.0\refint\APIiHR.dll
 D:\APIiHR\APIiHR\obj\Release\net5.0\APIiHR.pdb
 D:\APIiHR\APIiHR\obj\Release\net5.0\APIiHR.genruntimeconfig.cache
 D:\APIiHR\APIiHR\obj\Release\net5.0\ref\APIiHR.dll
+D:\APIiHR\APIiHR\bin\Release\net5.0\jose-jwt.dll
+D:\APIiHR\APIiHR\bin\Release\net5.0\Microsoft.IdentityModel.Abstractions.dll
