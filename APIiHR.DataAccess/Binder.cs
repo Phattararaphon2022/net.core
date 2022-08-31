@@ -15,7 +15,9 @@ namespace APIiHR.DataAccess
     {
         public static void Setup(IServiceCollection services, IConfiguration config)
         {
-            
+            services.AddTransient<IAuthenRespository, AuthenRespository>();
+            services.AddTransient<IAuthenDataAccess, AuthenDataAccess>();
+
             services.AddTransient<IReqotRespository, ReqotRespository>();
             services.AddTransient<IReqotDataAccess, ReqotDataAccess>();
 
@@ -110,8 +112,9 @@ namespace APIiHR.DataAccess
             services.AddTransient<ISysuserempDataAccess, SysuserempDataAccess>();
 
             var connStr = config.GetConnectionString("ConnDB");
+            services.AddDbContextPool<tbMTWebUserContext>(options => options.UseSqlServer(connStr));
+            services.AddDbContextPool<tbMTEmpMainContext>(options => options.UseSqlServer(connStr));
 
-           
             services.AddDbContextPool<DbReqotContext>(options => options.UseSqlServer(connStr));
             services.AddDbContextPool<DbReqleaveContext>(options => options.UseSqlServer(connStr));
             services.AddDbContextPool<DbReqchgshiftContext>(options => options.UseSqlServer(connStr));

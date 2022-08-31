@@ -10,7 +10,8 @@ namespace APIiHR.Business
     {
         public static void Setup(IServiceCollection services)
         {
-           
+            services.AddTransient<IAuthenManager, AunthenManager>();
+
             services.AddTransient<IReqotManager, ReqotManager>();
             services.AddTransient<IReqleaveManager, ReqleaveManager>();
             services.AddTransient<IReqchgshiftManager, ReqchgshiftManager>();
